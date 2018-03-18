@@ -22,7 +22,7 @@ public interface NmsUtility {
 
     void sendJSON(Collection<Player> players, Collection<String> json);
 
-    void sendTitle(Player player, String title, String subTitle);
+    void sendTitle(Player player, String title, String subTitle, int durationTicks);
 
     void sendActionbar(Player player, String message);
 

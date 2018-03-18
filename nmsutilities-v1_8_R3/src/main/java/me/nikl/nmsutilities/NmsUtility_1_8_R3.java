@@ -97,7 +97,7 @@ public class NmsUtility_1_8_R3 implements NmsUtility {
     }
 
     @Override
-    public void sendTitle(Player player, String title, String subTitle) {
+    public void sendTitle(Player player, String title, String subTitle, int durationTicks) {
         if (title != null) {
             IChatBaseComponent chatTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', title + "\"}"));
             PacketPlayOutTitle pTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, chatTitle);
@@ -108,7 +108,7 @@ public class NmsUtility_1_8_R3 implements NmsUtility {
             PacketPlayOutTitle pSubTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, chatSubTitle);
             ((CraftPlayer) player).getHandle().playerConnection.sendPacket(pSubTitle);
         }
-        PacketPlayOutTitle length = new PacketPlayOutTitle(5, 20, 5);
+        PacketPlayOutTitle length = new PacketPlayOutTitle(10, durationTicks, 10);
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(length);
     }
 
