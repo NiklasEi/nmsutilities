@@ -1,6 +1,6 @@
 # NMS Utilities
 
-Version dependent utilities. Currently supports all versions from 1.8 to 1.12.
+Version dependent utilities. Currently supports all versions from 1.8 to 1.13.
 
 ### Maven
 ```xml
@@ -15,7 +15,7 @@ Version dependent utilities. Currently supports all versions from 1.8 to 1.12.
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
         </dependency>
     </dependencies>
 ```

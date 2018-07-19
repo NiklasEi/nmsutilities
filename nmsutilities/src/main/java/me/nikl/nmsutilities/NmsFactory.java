@@ -28,6 +28,8 @@ public class NmsFactory {
                 return nmsUtility = new NmsUtility_1_11_R1();
             case "v1_12_R1":
                 return nmsUtility = new NmsUtility_1_12_R1();
+            case "v1_13_R1":
+                return nmsUtility = new NmsUtility_1_13_R1();
             default:
                 return null;
         }
