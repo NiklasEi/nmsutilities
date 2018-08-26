@@ -4,12 +4,15 @@ import com.google.gson.stream.JsonReader;
 import net.minecraft.server.v1_13_R1.ChatMessageType;
 import net.minecraft.server.v1_13_R1.EntityPlayer;
 import net.minecraft.server.v1_13_R1.IChatBaseComponent;
+import net.minecraft.server.v1_13_R1.ItemStack;
+import net.minecraft.server.v1_13_R1.NBTTagCompound;
 import net.minecraft.server.v1_13_R1.PacketPlayOutChat;
 import net.minecraft.server.v1_13_R1.PacketPlayOutOpenWindow;
 import net.minecraft.server.v1_13_R1.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_13_R1.PacketPlayOutTitle;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_13_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_13_R1.inventory.CraftItemStack;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -128,12 +131,14 @@ public class NmsUtility_1_13_R1 implements NmsUtility {
 
     @Override
     public org.bukkit.inventory.ItemStack removeGlow(org.bukkit.inventory.ItemStack item) {
-        if (item == null) return null;
-        ItemMeta meta = item.getItemMeta();
-        for (Enchantment enchantment : Enchantment.values()) {
-            meta.removeEnchant(enchantment);
+        ItemStack nmsStack = CraftItemStack.asNMSCopy(item);
+        NBTTagCompound tag = null;
+        if (nmsStack.hasTag()) {
+            tag = nmsStack.getTag();
+            tag.remove("ench");
+            nmsStack.setTag(tag);
+            return CraftItemStack.asCraftMirror(nmsStack);
         }
-        item.setItemMeta(meta);
         return item;
     }
 
