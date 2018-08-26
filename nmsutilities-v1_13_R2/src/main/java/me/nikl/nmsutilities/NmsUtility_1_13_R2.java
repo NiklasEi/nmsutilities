@@ -1,18 +1,15 @@
 package me.nikl.nmsutilities;
 
 import com.google.gson.stream.JsonReader;
-import net.minecraft.server.v1_13_R1.ChatMessageType;
-import net.minecraft.server.v1_13_R1.EntityPlayer;
-import net.minecraft.server.v1_13_R1.IChatBaseComponent;
-import net.minecraft.server.v1_13_R1.ItemStack;
-import net.minecraft.server.v1_13_R1.NBTTagCompound;
-import net.minecraft.server.v1_13_R1.PacketPlayOutChat;
-import net.minecraft.server.v1_13_R1.PacketPlayOutOpenWindow;
-import net.minecraft.server.v1_13_R1.PacketPlayOutPlayerListHeaderFooter;
-import net.minecraft.server.v1_13_R1.PacketPlayOutTitle;
+import net.minecraft.server.v1_13_R2.ChatMessageType;
+import net.minecraft.server.v1_13_R2.EntityPlayer;
+import net.minecraft.server.v1_13_R2.IChatBaseComponent;
+import net.minecraft.server.v1_13_R2.PacketPlayOutChat;
+import net.minecraft.server.v1_13_R2.PacketPlayOutOpenWindow;
+import net.minecraft.server.v1_13_R2.PacketPlayOutPlayerListHeaderFooter;
+import net.minecraft.server.v1_13_R2.PacketPlayOutTitle;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_13_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_13_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_13_R2.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -25,7 +22,7 @@ import java.util.Collection;
 /**
  * Created by niklas
  */
-public class NmsUtility_1_13_R1 implements NmsUtility {
+public class NmsUtility_1_13_R2 implements NmsUtility {
     @Override
     public void updateInventoryTitle(Player player, String newTitle) {
         EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
@@ -131,14 +128,12 @@ public class NmsUtility_1_13_R1 implements NmsUtility {
 
     @Override
     public org.bukkit.inventory.ItemStack removeGlow(org.bukkit.inventory.ItemStack item) {
-        ItemStack nmsStack = CraftItemStack.asNMSCopy(item);
-        NBTTagCompound tag = null;
-        if (nmsStack.hasTag()) {
-            tag = nmsStack.getTag();
-            tag.remove("ench");
-            nmsStack.setTag(tag);
-            return CraftItemStack.asCraftMirror(nmsStack);
+        if (item == null) return null;
+        ItemMeta meta = item.getItemMeta();
+        for (Enchantment enchantment : Enchantment.values()) {
+            meta.removeEnchant(enchantment);
         }
+        item.setItemMeta(meta);
         return item;
     }
 
