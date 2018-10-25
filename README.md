@@ -1,13 +1,13 @@
 # NMS Utilities
 
-Version dependent utilities. Currently supports all versions from 1.8 to 1.13.
+Version dependent utilities. Currently supports all versions from 1.8 to 1.13.1
 
 ### Maven
 ```xml
     <repositories>
         <repository>
             <id>nikl-repo</id>
-            <url>http://repo.nikl.me/artifactory/repositories</url>
+            <url>http://repo.nikl.me/artifactory/public</url>
         </repository>
     </repositories>
     
@@ -15,7 +15,7 @@ Version dependent utilities. Currently supports all versions from 1.8 to 1.13.
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities</artifactId>
-            <version>1.1.0</version>
+            <version>1.1.1</version>
         </dependency>
     </dependencies>
 ```
