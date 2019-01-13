@@ -16,6 +16,11 @@
         </repository>
     </distributionManagement>
 
+    <scm>
+        <url>https://github.com/NiklasEi/nmsutilities</url>
+        <connection>git@github.com:NiklasEi/nmsutilities.git</connection>
+    </scm>
+
     <modules>
         <module>nmsutilities-nms</module>
         <module>nmsutilities-v1_8_R1</module>
