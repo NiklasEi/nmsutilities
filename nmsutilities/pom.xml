@@ -137,11 +137,6 @@
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
-            <artifactId>nmsutilities-v1_13_R2</artifactId>
-            <version>1.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_14_R1</artifactId>
             <version>1.2.0</version>
         </dependency>
