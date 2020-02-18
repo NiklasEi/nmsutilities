@@ -8,6 +8,7 @@ import net.minecraft.server.v1_14_R1.PacketPlayOutChat;
 import net.minecraft.server.v1_14_R1.PacketPlayOutOpenWindow;
 import net.minecraft.server.v1_14_R1.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_14_R1.PacketPlayOutTitle;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_14_R1.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
@@ -27,7 +28,7 @@ public class NmsUtility_1_14_R1 implements NmsUtility {
     public void updateInventoryTitle(Player player, String newTitle) {
         EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         PacketPlayOutOpenWindow packet = new PacketPlayOutOpenWindow(entityPlayer.activeContainer.windowId,
-                entityPlayer.activeContainer.getType()
+                WindowType.guessBySlots(entityPlayer.activeContainer.getBukkitView().getTopInventory().getSize()).getType()
                 , IChatBaseComponent.ChatSerializer.a("{\"text\": \""
                 + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
         entityPlayer.playerConnection.sendPacket(packet);
