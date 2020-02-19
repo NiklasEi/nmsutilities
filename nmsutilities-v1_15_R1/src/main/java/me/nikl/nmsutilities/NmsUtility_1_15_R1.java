@@ -27,7 +27,7 @@ public class NmsUtility_1_15_R1 implements NmsUtility {
     public void updateInventoryTitle(Player player, String newTitle) {
         EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         PacketPlayOutOpenWindow packet = new PacketPlayOutOpenWindow(entityPlayer.activeContainer.windowId,
-                WindowType.guessBySlots(entityPlayer.activeContainer.getBukkitView().getTopInventory().getSize()).getType()
+                WindowType_1_15_R1.guessBySlots(entityPlayer.activeContainer.getBukkitView().getTopInventory().getSize()).getType()
                 , IChatBaseComponent.ChatSerializer.a("{\"text\": \""
                 + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
         entityPlayer.playerConnection.sendPacket(packet);
