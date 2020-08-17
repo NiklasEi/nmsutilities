@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import java.util.Collection;
 
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R2.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -13,23 +13,23 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import com.google.gson.stream.JsonReader;
 
-import net.minecraft.server.v1_16_R1.ChatMessageType;
-import net.minecraft.server.v1_16_R1.EntityPlayer;
-import net.minecraft.server.v1_16_R1.IChatBaseComponent;
-import net.minecraft.server.v1_16_R1.PacketPlayOutChat;
-import net.minecraft.server.v1_16_R1.PacketPlayOutOpenWindow;
-import net.minecraft.server.v1_16_R1.PacketPlayOutPlayerListHeaderFooter;
-import net.minecraft.server.v1_16_R1.PacketPlayOutTitle;
+import net.minecraft.server.v1_16_R2.ChatMessageType;
+import net.minecraft.server.v1_16_R2.EntityPlayer;
+import net.minecraft.server.v1_16_R2.IChatBaseComponent;
+import net.minecraft.server.v1_16_R2.PacketPlayOutChat;
+import net.minecraft.server.v1_16_R2.PacketPlayOutOpenWindow;
+import net.minecraft.server.v1_16_R2.PacketPlayOutPlayerListHeaderFooter;
+import net.minecraft.server.v1_16_R2.PacketPlayOutTitle;
 
 /**
  * Created by niklas
  */
-public class NmsUtility_1_16_R1 implements NmsUtility {
+public class NmsUtility_1_16_R2 implements NmsUtility {
     @Override
     public void updateInventoryTitle(Player player, String newTitle) {
         final EntityPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         final PacketPlayOutOpenWindow packet = new PacketPlayOutOpenWindow(entityPlayer.activeContainer.windowId,
-                WindowType_1_16_R1.guessBySlots(entityPlayer.activeContainer.getBukkitView().getTopInventory().getSize()).getType()
+                WindowType_1_16_R2.guessBySlots(entityPlayer.activeContainer.getBukkitView().getTopInventory().getSize()).getType()
                 , IChatBaseComponent.ChatSerializer.a("{\"text\": \""
                         + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
         entityPlayer.playerConnection.sendPacket(packet);

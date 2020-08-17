@@ -1,11 +1,11 @@
 package me.nikl.nmsutilities;
 
-import net.minecraft.server.v1_16_R1.Containers;
+import net.minecraft.server.v1_16_R2.Containers;
 
 /**
  * @author Niklas Eicker
  */
-public enum WindowType_1_16_R1 {
+public enum WindowType_1_16_R2 {
     GENERIC_9_1(Containers.GENERIC_9X1),
     GENERIC_9_2(Containers.GENERIC_9X2),
     GENERIC_9_3(Containers.GENERIC_9X3),
@@ -14,7 +14,7 @@ public enum WindowType_1_16_R1 {
     GENERIC_9_6(Containers.GENERIC_9X6);
 
     private Containers<?> type;
-    WindowType_1_16_R1(Containers<?> type) {
+    WindowType_1_16_R2(Containers<?> type) {
         this.type = type;
     }
 
@@ -22,7 +22,7 @@ public enum WindowType_1_16_R1 {
         return type;
     }
 
-    public static WindowType_1_16_R1 guessBySlots(int slots) {
+    public static WindowType_1_16_R2 guessBySlots(int slots) {
         if (slots%9 == 0) {
             switch (slots/9) {
                 case 1:
