@@ -10,7 +10,7 @@
         <version>1.4.1</version>
     </parent>
 
-    <artifactId>nmsutilities-v1_8_R1</artifactId>
+    <artifactId>nmsutilities-v1_16_R2</artifactId>
 
     <repositories>
         <repository>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>craftbukkit</artifactId>
-            <version>1.8-R0.1-SNAPSHOT</version>
+            <version>1.16.3-R0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
