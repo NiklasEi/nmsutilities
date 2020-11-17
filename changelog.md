@@ -1,3 +1,9 @@
+### v 1.4.2
+- support mc 1.16.4
+
+### v 1.4.1
+- fix 1.16.1 and support mc 1.16.2/3
+
 ### v 1.4.0
 - Add support for 1.16
 
