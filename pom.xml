@@ -38,10 +38,12 @@
         <module>nmsutilities-v1_16_R1</module>
         <module>nmsutilities-v1_16_R2</module>
         <module>nmsutilities-v1_16_R3</module>
+        <module>nmsutilities-v1_17_R1</module>
         <module>nmsutilities</module>
     </modules>
 
     <properties>
+        <java.version>16</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>

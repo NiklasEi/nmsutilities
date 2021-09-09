@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>me.nikl.nmsutilities</groupId>
+        <artifactId>nmsutilities-parent</artifactId>
+        <version>1.4.2</version>
+    </parent>
+
+    <artifactId>nmsutilities-v1_17_R1</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <release>${java.version}</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.md-5</groupId>
+                <artifactId>specialsource-maven-plugin</artifactId>
+                <version>1.2.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>remap</goal>
+                        </goals>
+                        <id>remap-obf</id>
+                        <configuration>
+                            <srgIn>org.spigotmc:minecraft-server:1.17-R0.1-SNAPSHOT:txt:maps-mojang</srgIn>
+                            <reverse>true</reverse>
+                            <remappedDependencies>org.spigotmc:spigot:1.17-R0.1-SNAPSHOT:jar:remapped-mojang</remappedDependencies>
+                            <remappedArtifactAttached>true</remappedArtifactAttached>
+                            <remappedClassifierName>remapped-obf</remappedClassifierName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>remap</goal>
+                        </goals>
+                        <id>remap-spigot</id>
+                        <configuration>
+                            <inputFile>${project.build.directory}/${project.artifactId}-${project.version}-remapped-obf.jar</inputFile>
+                            <srgIn>org.spigotmc:minecraft-server:1.17-R0.1-SNAPSHOT:csrg:maps-spigot</srgIn>
+                            <remappedDependencies>org.spigotmc:spigot:1.17-R0.1-SNAPSHOT:jar:remapped-obf</remappedDependencies>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>bukkit-repo</id>
+            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.spigotmc</groupId>
+            <artifactId>spigot</artifactId>
+            <version>1.17-R0.1-SNAPSHOT</version>
+            <type>jar</type>
+            <classifier>remapped-mojang</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>me.nikl.nmsutilities</groupId>
+            <artifactId>nmsutilities-nms</artifactId>
+            <version>1.4.2</version>
+        </dependency>
+    </dependencies>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+</project>
