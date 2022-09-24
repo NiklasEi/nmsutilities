@@ -4,8 +4,7 @@ import java.util.Collection;
 
 import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundChatPacket;
-import net.minecraft.network.protocol.game.ClientboundOpenScreenPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
@@ -25,13 +24,16 @@ public class NmsUtility_1_17_R1 implements NmsUtility {
                 WindowType_1_17_R1.guessBySlots(entityPlayer.containerMenu.getBukkitView().getTopInventory().getSize()).getType()
                 , Component.Serializer.fromJson("{\"text\": \""
                         + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
+
+        final ClientboundContainerSetContentPacket contentPacket = new ClientboundContainerSetContentPacket(entityPlayer.containerMenu.containerId, 0,
+                entityPlayer.containerMenu.getItems(), entityPlayer.getMainHandItem() );
         entityPlayer.connection.getConnection().send(packet);
-        // left out
+        entityPlayer.connection.getConnection().send(contentPacket);
     }
 
     @Override
     public void sendJSON(Player player, String json) {
-        final Component comp = Component.Serializer.fromJson(json);
+        final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&',json));
         final ClientboundChatPacket packet = new ClientboundChatPacket(comp, ChatType.CHAT, player.getUniqueId());
         ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
     }
@@ -39,7 +41,7 @@ public class NmsUtility_1_17_R1 implements NmsUtility {
     @Override
     public void sendJSON(Player player, Collection<String> json) {
         for (final String message : json) {
-            final Component comp = Component.Serializer.fromJson(message);
+            final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&',message));
             final ClientboundChatPacket packet = new ClientboundChatPacket(comp, ChatType.CHAT, player.getUniqueId());
             ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
         }
@@ -47,7 +49,7 @@ public class NmsUtility_1_17_R1 implements NmsUtility {
 
     @Override
     public void sendJSON(Collection<Player> players, String json) {
-        final Component comp = Component.Serializer.fromJson(json);
+        final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&',json));
         for (final Player player : players) {
             ((CraftPlayer) player).getHandle().connection.getConnection().send(new ClientboundChatPacket(comp, ChatType.CHAT, player.getUniqueId()));
         }
@@ -62,30 +64,32 @@ public class NmsUtility_1_17_R1 implements NmsUtility {
 
     @Override
     public void sendTitle(Player player, String title, String subTitle, int durationTicks) {
-//        if (title != null) {
-//            final IChatBaseComponent chatTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \""
-//                    + ChatColor.translateAlternateColorCodes('&', title + "\"}"));
-//            final PacketPlayOutTitle pTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TITLE, chatTitle);
-//            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(pTitle);
-//        }
-//        if (subTitle != null) {
-//            final IChatBaseComponent chatSubTitle = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', subTitle + "\"}"));
-//            final PacketPlayOutTitle pSubTitle = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.SUBTITLE, chatSubTitle);
-//            ((CraftPlayer) player).getHandle().playerConnection.sendPacket(pSubTitle);
-//        }
-//        final PacketPlayOutTitle length = new PacketPlayOutTitle(10, durationTicks, 10);
-//        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(length);
+        if (title != null) {
+            final Component comp = Component.Serializer.fromJson("{\"text\": \""
+                   + ChatColor.translateAlternateColorCodes('&', title + "\"}"));
+            final ClientboundSetTitleTextPacket packet = new ClientboundSetTitleTextPacket(comp);
+            ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+        }
+        if (subTitle != null) {
+            final Component comp = Component.Serializer.fromJson("{\"text\": \""
+                    + ChatColor.translateAlternateColorCodes('&', subTitle + "\"}"));
+            final ClientboundSetSubtitleTextPacket packet = new ClientboundSetSubtitleTextPacket(comp);
+            ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+        }
+        final ClientboundSetTitlesAnimationPacket length = new ClientboundSetTitlesAnimationPacket(10, durationTicks, 10);
+        ((CraftPlayer) player).getHandle().connection.getConnection().send(length);
     }
 
     @Override
     public void sendActionbar(Player player, String message) {
-//        final IChatBaseComponent icbc = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', message + "\"}"));
-//        final PacketPlayOutChat bar = new PacketPlayOutChat(icbc, ChatMessageType.GAME_INFO, null);
-//        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(bar);
+        final Component comp = Component.Serializer.fromJson("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', message + "\"}"));
+        final ClientboundSetActionBarTextPacket packet = new ClientboundSetActionBarTextPacket(comp);
+        ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
     }
 
     @Override
     public void sendListFooter(Player player, String footer) {
+        // Todo: combine methods and use ClientboundTabListPacket
 //        final IChatBaseComponent bottom = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + footer + "\"}");
 //        final PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();
 //        try {
