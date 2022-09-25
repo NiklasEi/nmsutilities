@@ -2,13 +2,12 @@ package me.nikl.nmsutilities;
 
 import java.util.Collection;
 
-import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.*;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -17,42 +16,39 @@ import org.bukkit.inventory.meta.ItemMeta;
 /**
  * Created by niklas
  */
-public class NmsUtility_1_17_R1 implements NmsUtility {
+public class NmsUtility_1_19_R1 implements NmsUtility {
     @Override
     public void updateInventoryTitle(Player player, String newTitle) {
         final ServerPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         final ClientboundOpenScreenPacket packet = new ClientboundOpenScreenPacket(entityPlayer.containerMenu.containerId,
-                WindowType_1_17_R1.guessBySlots(entityPlayer.containerMenu.getBukkitView().getTopInventory().getSize()).getType()
+                WindowType_1_19_R1.guessBySlots(entityPlayer.containerMenu.getBukkitView().getTopInventory().getSize()).getType()
                 , Component.Serializer.fromJson("{\"text\": \""
-                        + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
+                + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
 
         final ClientboundContainerSetContentPacket contentPacket = new ClientboundContainerSetContentPacket(entityPlayer.containerMenu.containerId, 0,
-                entityPlayer.containerMenu.getItems(), entityPlayer.getMainHandItem() );
+                entityPlayer.containerMenu.getItems(), entityPlayer.getMainHandItem());
         entityPlayer.connection.getConnection().send(packet);
         entityPlayer.connection.getConnection().send(contentPacket);
     }
 
     @Override
     public void sendJSON(Player player, String json) {
-        final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&',json));
-        final ClientboundChatPacket packet = new ClientboundChatPacket(comp, ChatType.CHAT, player.getUniqueId());
-        ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+        final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&', json));
+        final ChatType.Bound chatType = ChatType.bind(ChatType.CHAT, ((CraftPlayer) player).getHandle().level.registryAccess(), Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&', player.getDisplayName())));
+        ((CraftPlayer) player).getHandle().sendChatMessage(OutgoingPlayerChatMessage.create(PlayerChatMessage.system(new ChatMessageContent(json, comp))), true, chatType);
     }
 
     @Override
     public void sendJSON(Player player, Collection<String> json) {
         for (final String message : json) {
-            final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&',message));
-            final ClientboundChatPacket packet = new ClientboundChatPacket(comp, ChatType.CHAT, player.getUniqueId());
-            ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+            sendJSON(player, message);
         }
     }
 
     @Override
     public void sendJSON(Collection<Player> players, String json) {
-        final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&',json));
         for (final Player player : players) {
-            ((CraftPlayer) player).getHandle().connection.getConnection().send(new ClientboundChatPacket(comp, ChatType.CHAT, player.getUniqueId()));
+            sendJSON(player, json);
         }
     }
 
@@ -67,7 +63,7 @@ public class NmsUtility_1_17_R1 implements NmsUtility {
     public void sendTitle(Player player, String title, String subTitle, int durationTicks) {
         if (title != null) {
             final Component comp = Component.Serializer.fromJson("{\"text\": \""
-                   + ChatColor.translateAlternateColorCodes('&', title + "\"}"));
+                    + ChatColor.translateAlternateColorCodes('&', title + "\"}"));
             final ClientboundSetTitleTextPacket packet = new ClientboundSetTitleTextPacket(comp);
             ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
         }
@@ -108,8 +104,7 @@ public class NmsUtility_1_17_R1 implements NmsUtility {
 
     @Override
     public org.bukkit.inventory.ItemStack removeGlow(org.bukkit.inventory.ItemStack item) {
-        if (item == null)
-        {
+        if (item == null) {
             return null;
         }
         final ItemMeta meta = item.getItemMeta();
@@ -122,8 +117,7 @@ public class NmsUtility_1_17_R1 implements NmsUtility {
 
     @Override
     public org.bukkit.inventory.ItemStack addGlow(org.bukkit.inventory.ItemStack item) {
-        if (item == null)
-        {
+        if (item == null) {
             return null;
         }
         item.addUnsafeEnchantment(Enchantment.LUCK, 1);

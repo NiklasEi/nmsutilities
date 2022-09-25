@@ -166,6 +166,21 @@
             <artifactId>nmsutilities-v1_17_R1</artifactId>
             <version>1.5.0</version>
         </dependency>
+        <dependency>
+            <groupId>me.nikl.nmsutilities</groupId>
+            <artifactId>nmsutilities-v1_18_R1</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>me.nikl.nmsutilities</groupId>
+            <artifactId>nmsutilities-v1_18_R2</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>me.nikl.nmsutilities</groupId>
+            <artifactId>nmsutilities-v1_19_R1</artifactId>
+            <version>1.5.0</version>
+        </dependency>
     </dependencies>
 
     <properties>

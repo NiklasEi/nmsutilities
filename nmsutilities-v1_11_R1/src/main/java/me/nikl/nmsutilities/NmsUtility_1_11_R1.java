@@ -96,6 +96,12 @@ public class NmsUtility_1_11_R1 implements NmsUtility {
     }
 
     @Override
+    public void sendList(Player player, String header, String footer) {
+        if (header !=  null) sendListHeader(player, header);
+        if (footer !=  null) sendListFooter(player, footer);
+    }
+
+    @Override
     public void sendListFooter(Player player, String footer) {
         IChatBaseComponent bottom = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + footer + "\"}");
         PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();
@@ -112,14 +118,7 @@ public class NmsUtility_1_11_R1 implements NmsUtility {
 
     @Override
     public void sendListHeader(Player player, String header) {
-        JsonReader reader = new JsonReader(new StringReader("{\"text\": \"" + header + "\"}"));
-        reader.setLenient(true);
-        Bukkit.getConsoleSender().sendMessage("reader null? " + (reader == null) + "   toString() null? " + (reader.toString() == null));
-        if (reader != null) Bukkit.getConsoleSender().sendMessage(reader.toString());
-        reader.setLenient(true);
-        reader = new JsonReader(new StringReader("{'text': '" + header + "'}"));
-        Bukkit.getConsoleSender().sendMessage("reader null? " + (reader == null));
-        Bukkit.getConsoleSender().sendMessage(reader.toString());
+        JsonReader reader = new JsonReader(new StringReader("{'text': '" + header + "'}"));
         reader.setLenient(true);
         IChatBaseComponent bottom = IChatBaseComponent.ChatSerializer.a((reader.toString()));
         PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();

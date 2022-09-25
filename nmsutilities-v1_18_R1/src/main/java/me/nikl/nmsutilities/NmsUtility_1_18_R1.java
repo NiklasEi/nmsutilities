@@ -8,7 +8,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -17,12 +17,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 /**
  * Created by niklas
  */
-public class NmsUtility_1_17_R1 implements NmsUtility {
+public class NmsUtility_1_18_R1 implements NmsUtility {
     @Override
     public void updateInventoryTitle(Player player, String newTitle) {
         final ServerPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         final ClientboundOpenScreenPacket packet = new ClientboundOpenScreenPacket(entityPlayer.containerMenu.containerId,
-                WindowType_1_17_R1.guessBySlots(entityPlayer.containerMenu.getBukkitView().getTopInventory().getSize()).getType()
+                WindowType_1_18_R1.guessBySlots(entityPlayer.containerMenu.getBukkitView().getTopInventory().getSize()).getType()
                 , Component.Serializer.fromJson("{\"text\": \""
                         + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
 

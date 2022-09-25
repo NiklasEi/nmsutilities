@@ -96,6 +96,12 @@ public class NmsUtility_1_13_R2 implements NmsUtility {
     }
 
     @Override
+    public void sendList(Player player, String header, String footer) {
+        if (header !=  null) sendListHeader(player, header);
+        if (footer !=  null) sendListFooter(player, footer);
+    }
+
+    @Override
     public void sendListFooter(Player player, String footer) {
         IChatBaseComponent bottom = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + footer + "\"}");
         PacketPlayOutPlayerListHeaderFooter packet = new PacketPlayOutPlayerListHeaderFooter();

@@ -26,6 +26,8 @@ public interface NmsUtility {
 
     void sendActionbar(Player player, String message);
 
+    void sendList(Player player, String header, String footer);
+
     void sendListHeader(Player player, String header);
 
     void sendListFooter(Player player, String footer);
