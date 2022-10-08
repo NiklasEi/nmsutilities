@@ -7,7 +7,7 @@ Version dependent utilities. Currently, supports all versions from 1.8 to 1.19.2
     <repositories>
         <repository>
             <id>nikl-repo</id>
-            <url>http://repo.nikl.me/artifactory/public</url>
+            <url>https://repo.nikl.me/artifactory/public</url>
         </repository>
     </repositories>
     
