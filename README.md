@@ -7,10 +7,10 @@ Version dependent utilities. Currently, supports all versions from 1.8 to 1.19.2
     <repositories>
         <repository>
             <id>nikl-repo</id>
-            <url>https://repo.nikl.me/artifactory/public</url>
+            <url>https://repo.repsy.io/mvn/nikl/minecraft</url>
         </repository>
     </repositories>
-    
+
     <dependencies>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
