@@ -1,3 +1,9 @@
+### v 1.6.0
+- support mc 1.19.4
+
+### v 1.5.0
+- support mc 1.19.2
+
 ### v 1.4.2
 - support mc 1.16.4
 
