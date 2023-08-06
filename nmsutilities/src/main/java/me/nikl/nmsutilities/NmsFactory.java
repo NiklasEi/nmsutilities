@@ -54,6 +54,8 @@ public class NmsFactory {
                 return nmsUtility = new NmsUtility_1_19_R2();
             case "v1_19_R3":
                 return nmsUtility = new NmsUtility_1_19_R3();
+            case "v1_20_R1":
+                return nmsUtility = new NmsUtility_1_20_R1();
             default:
                 return null;
         }

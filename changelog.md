@@ -1,3 +1,6 @@
+### v 1.7.0
+- support mc 1.20.1
+
 ### v 1.6.0
 - support mc 1.19.4
 

@@ -34,7 +34,8 @@ public class NmsUtility_1_19_R3 implements NmsUtility {
     @Override
     public void sendJSON(Player player, String json) {
         final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&', json));
-        final ChatType.Bound chatType = ChatType.bind(ChatType.CHAT, ((CraftPlayer) player).getHandle().level.registryAccess(), Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&', player.getDisplayName())));
+        final ChatType.Bound chatType = ChatType.bind(ChatType.CHAT, ((CraftPlayer) player).getHandle().level.registryAccess(), Component.Serializer.fromJson("{\"text\": \""
+                + ChatColor.translateAlternateColorCodes('&', player.getDisplayName() + "\"}")));
         ((CraftPlayer) player).getHandle().sendChatMessage(OutgoingChatMessage.create(PlayerChatMessage.system("").withUnsignedContent(comp)), true, chatType);
     }
 

@@ -7,7 +7,7 @@
     <parent>
         <groupId>me.nikl.nmsutilities</groupId>
         <artifactId>nmsutilities-parent</artifactId>
-        <version>1.6.0</version>
+        <version>1.7.0</version>
     </parent>
 
     <artifactId>nmsutilities</artifactId>
@@ -27,7 +27,7 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.11.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -37,7 +37,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.5.0</version>
                 <configuration>
                     <quiet>true</quiet>
                     <notimestamp>true</notimestamp>
@@ -84,112 +84,117 @@
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-nms</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_8_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_8_R2</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_8_R3</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_9_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_9_R2</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_10_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_11_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_12_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_13_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_13_R2</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_14_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_15_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_16_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_16_R2</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_16_R3</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_17_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_18_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_18_R2</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_19_R1</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_19_R2</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
         </dependency>
         <dependency>
             <groupId>me.nikl.nmsutilities</groupId>
             <artifactId>nmsutilities-v1_19_R3</artifactId>
-            <version>1.6.0</version>
+            <version>1.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>me.nikl.nmsutilities</groupId>
+            <artifactId>nmsutilities-v1_20_R1</artifactId>
+            <version>1.7.0</version>
         </dependency>
     </dependencies>
 

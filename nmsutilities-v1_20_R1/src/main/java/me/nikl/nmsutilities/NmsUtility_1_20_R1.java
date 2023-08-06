@@ -7,7 +7,7 @@ import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.level.ServerPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.v1_19_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
@@ -16,27 +16,26 @@ import org.bukkit.inventory.meta.ItemMeta;
 /**
  * Created by niklas
  */
-public class NmsUtility_1_19_R2 implements NmsUtility {
+public class NmsUtility_1_20_R1 implements NmsUtility {
     @Override
     public void updateInventoryTitle(Player player, String newTitle) {
         final ServerPlayer entityPlayer = ((CraftPlayer) player).getHandle();
         final ClientboundOpenScreenPacket packet = new ClientboundOpenScreenPacket(entityPlayer.containerMenu.containerId,
-                WindowType_1_19_R2.guessBySlots(entityPlayer.containerMenu.getBukkitView().getTopInventory().getSize()).getType()
+                WindowType_1_20_R1.guessBySlots(entityPlayer.containerMenu.getBukkitView().getTopInventory().getSize()).getType()
                 , Component.Serializer.fromJson("{\"text\": \""
                 + ChatColor.translateAlternateColorCodes('&', newTitle + "\"}")));
 
         final ClientboundContainerSetContentPacket contentPacket = new ClientboundContainerSetContentPacket(entityPlayer.containerMenu.containerId, 0,
                 entityPlayer.containerMenu.getItems(), entityPlayer.getMainHandItem());
-        entityPlayer.connection.getConnection().send(packet);
-        entityPlayer.connection.getConnection().send(contentPacket);
+        entityPlayer.connection.send(packet);
+        entityPlayer.connection.send(contentPacket);
     }
 
     @Override
     public void sendJSON(Player player, String json) {
-        final Component comp = Component.Serializer.fromJson(ChatColor.translateAlternateColorCodes('&', json));
-        final ChatType.Bound chatType = ChatType.bind(ChatType.CHAT, ((CraftPlayer) player).getHandle().level.registryAccess(), Component.Serializer.fromJson("{\"text\": \""
+        final ChatType.Bound chatType = ChatType.bind(ChatType.CHAT, ((CraftPlayer) player).getHandle().level().registryAccess(), Component.Serializer.fromJson("{\"text\": \""
                 + ChatColor.translateAlternateColorCodes('&', player.getDisplayName() + "\"}")));
-        ((CraftPlayer) player).getHandle().sendChatMessage(OutgoingChatMessage.create(PlayerChatMessage.system("").withUnsignedContent(comp)), true, chatType);
+        ((CraftPlayer) player).getHandle().sendChatMessage(OutgoingChatMessage.create(PlayerChatMessage.system(ChatColor.translateAlternateColorCodes('&',json))), true, chatType);
     }
 
     @Override
@@ -66,23 +65,23 @@ public class NmsUtility_1_19_R2 implements NmsUtility {
             final Component comp = Component.Serializer.fromJson("{\"text\": \""
                     + ChatColor.translateAlternateColorCodes('&', title + "\"}"));
             final ClientboundSetTitleTextPacket packet = new ClientboundSetTitleTextPacket(comp);
-            ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+            ((CraftPlayer) player).getHandle().connection.send(packet);
         }
         if (subTitle != null) {
             final Component comp = Component.Serializer.fromJson("{\"text\": \""
                     + ChatColor.translateAlternateColorCodes('&', subTitle + "\"}"));
             final ClientboundSetSubtitleTextPacket packet = new ClientboundSetSubtitleTextPacket(comp);
-            ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+            ((CraftPlayer) player).getHandle().connection.send(packet);
         }
         final ClientboundSetTitlesAnimationPacket length = new ClientboundSetTitlesAnimationPacket(10, durationTicks, 10);
-        ((CraftPlayer) player).getHandle().connection.getConnection().send(length);
+        ((CraftPlayer) player).getHandle().connection.send(length);
     }
 
     @Override
     public void sendActionbar(Player player, String message) {
         final Component comp = Component.Serializer.fromJson("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', message + "\"}"));
         final ClientboundSetActionBarTextPacket packet = new ClientboundSetActionBarTextPacket(comp);
-        ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+        ((CraftPlayer) player).getHandle().connection.send(packet);
     }
 
     @Override
@@ -90,7 +89,7 @@ public class NmsUtility_1_19_R2 implements NmsUtility {
         final Component headerComponent = header == null ? null : Component.Serializer.fromJson("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', header + "\"}"));
         final Component footerComponent = footer == null ? null : Component.Serializer.fromJson("{\"text\": \"" + ChatColor.translateAlternateColorCodes('&', footer + "\"}"));
         final ClientboundTabListPacket packet = new ClientboundTabListPacket(headerComponent, footerComponent);
-        ((CraftPlayer) player).getHandle().connection.getConnection().send(packet);
+        ((CraftPlayer) player).getHandle().connection.send(packet);
     }
 
     @Override
