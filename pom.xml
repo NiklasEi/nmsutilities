@@ -7,7 +7,7 @@
     <groupId>me.nikl.nmsutilities</groupId>
     <artifactId>nmsutilities-parent</artifactId>
     <packaging>pom</packaging>
-    <version>1.7.0</version>
+    <version>1.9.0</version>
 
     <distributionManagement>
         <repository>
@@ -22,6 +22,7 @@
     </scm>
 
     <modules>
+        <module>nmsutilities-nms</module>
         <module>nmsutilities-nms</module>
         <module>nmsutilities-v1_8_R1</module>
         <module>nmsutilities-v1_8_R2</module>
@@ -45,6 +46,7 @@
         <module>nmsutilities-v1_19_R2</module>
         <module>nmsutilities-v1_19_R3</module>
         <module>nmsutilities-v1_20_R1</module>
+        <module>nmsutilities-v1_20_R3</module>
         <module>nmsutilities</module>
     </modules>
 
